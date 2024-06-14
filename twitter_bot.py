@@ -31,7 +31,11 @@ except tweepy.TweepError as e:
 
 # Post a tweet
 try:
-    client.create_tweet(text="it works!")
+    client.create_tweet(text="testing more stuff")
+    client.create_tweet(text="testing more stuff2")
+    client.create_tweet(text="testing more stuff3")
+    client.create_tweet(text="testing more stuff4")
+    client.create_tweet(text="testing more stuff5")
     print("Tweet sent successfully")
 except tweepy.TweepError as e:
     print(f"Error during tweet: {e}")
