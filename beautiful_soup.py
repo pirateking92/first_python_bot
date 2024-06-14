@@ -11,7 +11,12 @@ print(r)
 
 # Parsing the HTML
 soup = BeautifulSoup(r.content, 'html.parser')
-print(soup.prettify())
 
-# is very similar to the requests library, but provides the output to 
-# the terminal in a nicer format
+s = soup.find('div', class_='text')
+
+# Check if 's' is not None
+if s:
+    content = s.find_all('p')
+    print(content)
+else:
+    print("The specified div was not found.")
