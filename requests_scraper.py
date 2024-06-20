@@ -1,7 +1,7 @@
 import requests
 
 # Making a GET request
-r = requests.get('https://portgasdfolioace.vercel.app')
+r = requests.get('https://www.google.com')
 
 # check status code for response received
 # success code - 200
