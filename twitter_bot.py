@@ -1,6 +1,8 @@
 import tweepy
 import os
 from dotenv import load_dotenv
+import tweepy.errors
+from requests_scraper import req_scrape
 
 # Load environment variables from .env file
 load_dotenv()
@@ -19,6 +21,9 @@ client = tweepy.Client(bearer_token=bearer_token,
                        access_token=access_token,
                        access_token_secret=access_token_secret)
 
+auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
+api = tweepy.API(auth)
+
 # Verify credentials
 try:
     response = client.get_me()
@@ -30,10 +35,12 @@ except tweepy.TweepError as e:
     print(f"Error during authentication: {e}")
 
 # Post a tweet
+anime_list = req_scrape()
+
+print(anime_list)
+# Check if the CSV file exists
 try:
-    client.create_tweet(text="dom")
-    client.create_tweet(text="is")
-    client.create_tweet(text="cool")
+    client.create_tweet(anime_list)
     print("Tweet sent successfully")
-except tweepy.TweepError as e:
-    print(f"Error during tweet: {e}")
+except tweepy.errors as e:
+        print(f"Error during tweet: {e}")
