@@ -1,8 +1,9 @@
+from datetime import datetime
 import tweepy
 import os
 import time
-from dotenv import load_dotenv
 import tweepy.errors
+from dotenv import load_dotenv
 from requests_scraper import req_scrape, upload_to_google_sheets
 
 # Load environment variables from .env file
@@ -25,7 +26,7 @@ client = tweepy.Client(bearer_token=bearer_token,
 # run two other functions
 req_scrape()
 upload_to_google_sheets()
-time.sleep(15)
+time.sleep(5)
 # Verify credentials
 try:
     response = client.get_me()
@@ -35,15 +36,23 @@ try:
         print("Error during authentication")
 except tweepy.errors.TweepyException as e:
     print(f"Error during authentication: {e}")
-    
+
 time.sleep(5)
 
 
-# Post a tweet
+def create_unique_tweet(base_text, url):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return f"{base_text} (Updated: {timestamp}) {url}"
+
+
+# When tweeting:
+base_tweet = "Check out the latest top airing anime!"
 sheets_url = "https://docs.google.com/spreadsheets/d/1TBpLTpAsucY_aYz5qF4DN6bI90DQQ64v3AUzPA6zqeI/edit?gid=0#gid=0"
-# Check if the CSV file exists
+unique_tweet = create_unique_tweet(base_tweet, sheets_url)
+
+# Post a tweet
 try:
-    client.create_tweet(text=sheets_url)
+    client.create_tweet(text=unique_tweet)
     print("Tweet sent successfully")
 except tweepy.errors.TweepyException as e:
-        print(f"Error during tweet: {e}")
+    print(f"Error during tweet: {e}")
