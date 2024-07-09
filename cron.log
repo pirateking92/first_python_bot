@@ -1,0 +1,104 @@
+102 cells updated.
+Authentication OK
+Tweet sent successfully
+Traceback (most recent call last):
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1099, in _validate_conn
+    conn.connect()
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/connection.py", line 653, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/connection.py", line 806, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 465, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 509, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.pyenv/versions/3.11.2/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.pyenv/versions/3.11.2/lib/python3.11/ssl.py", line 1075, in _create
+    self.do_handshake()
+  File "/Users/mattdoyle/.pyenv/versions/3.11.2/lib/python3.11/ssl.py", line 1346, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLZeroReturnError: TLS/SSL connection has been closed (EOF) (_ssl.c:992)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: TLS/SSL connection has been closed (EOF) (_ssl.c:992)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/requests/adapters.py", line 698, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)')))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/anime_twitter_bot.py", line 28, in <module>
+    upload_to_google_sheets()
+  File "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/requests_scraper.py", line 60, in upload_to_google_sheets
+    creds.refresh(Request())
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/oauth2/credentials.py", line 431, in refresh
+    ) = reauth.refresh_grant(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/oauth2/reauth.py", line 333, in refresh_grant
+    response_status_ok, response_data, retryable_error = _client._token_endpoint_request_no_throw(
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/oauth2/_client.py", line 211, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+                                                        ^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/oauth2/_client.py", line 187, in _perform_request
+    response = request(
+               ^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)')))
+Traceback (most recent call last):
+  File "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/anime_twitter_bot.py", line 28, in <module>
+    upload_to_google_sheets()
+  File "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/requests_scraper.py", line 60, in upload_to_google_sheets
+    creds.refresh(Request())
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/oauth2/credentials.py", line 431, in refresh
+    ) = reauth.refresh_grant(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/oauth2/reauth.py", line 366, in refresh_grant
+    _client._handle_error_response(response_data, retryable_error)
+  File "/Users/mattdoyle/.local/share/virtualenvs/twitter_bot-g5uCMSnG/lib/python3.11/site-packages/google/oauth2/_client.py", line 68, in _handle_error_response
+    raise exceptions.RefreshError(
+google.auth.exceptions.RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})

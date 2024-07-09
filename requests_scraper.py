@@ -49,18 +49,24 @@ def req_scrape():
 def upload_to_google_sheets():
     """Uploads data from the CSV to Google Sheets."""
     creds = None
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    if os.path.exists(
+            "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/token.json"):
+        creds = Credentials.from_authorized_user_file(
+            "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/token.json",
+            SCOPES)
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                "credentials.json", SCOPES)
+                "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/credentials.json",
+                SCOPES)
             creds = flow.run_local_server(port=0)
 
-        with open("token.json", "w") as token:
+        with open(
+                "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/token.json",
+                "w") as token:
             token.write(creds.to_json())
 
     try:
@@ -68,7 +74,9 @@ def upload_to_google_sheets():
         sheet = service.spreadsheets()
 
         # Load data from CSV
-        df = pd.read_csv("anime_ranking.csv")
+        df = pd.read_csv(
+            "/Users/mattdoyle/Desktop/Coding/Python/twitter_bot/top_airing_anime.csv"
+        )
 
         # Convert DataFrame to list of lists
         values = [df.columns.tolist()] + df.values.tolist()
